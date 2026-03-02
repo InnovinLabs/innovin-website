@@ -67,8 +67,15 @@ export async function onRequestPost(context) {
 
         const storageData = await storageResponse.json();
 
-        // Supabase returns { url: "https://...supabase.co/storage/v1/object/upload/sign/bucket/path?token=..." }
-        const uploadUrl = storageData.url;
+        // Supabase often returns a relative path like "/object/upload/sign/..."
+        // We must ensure it's an absolute URL so the browser doesn't try to PUT to Cloudflare.
+        let uploadUrl = storageData.url;
+        if (uploadUrl && !uploadUrl.startsWith('http')) {
+            const baseUrl = supabaseUrl.endsWith('/') ? supabaseUrl.slice(0, -1) : supabaseUrl;
+            // The path usually starts with /object/upload/... but we need /storage/v1/object/upload/...
+            const path = uploadUrl.startsWith('/') ? uploadUrl : `/${uploadUrl}`;
+            uploadUrl = `${baseUrl}/storage/v1${path}`;
+        }
 
         if (!uploadUrl) {
             console.error("No URL in Supabase response:", storageData);
