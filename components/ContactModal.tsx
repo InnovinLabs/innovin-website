@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useRef, createContext, useContext, ReactNode } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, createContext, useContext, ReactNode } from "react";
 import { ChevronUp, ArrowRight, X, CheckCircle } from "lucide-react";
+import Turnstile from "./Turnstile";
 
 // Context for managing modal state
 interface ContactModalContextType {
@@ -68,6 +69,7 @@ function ContactModal() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
   const companyInputRef = useRef<HTMLInputElement>(null);
@@ -82,6 +84,7 @@ function ContactModal() {
       setErrors({});
       setShowSuccess(false);
       setIsSubmitting(false);
+      setTurnstileToken(null);
     }
   }, [isOpen]);
 
@@ -250,12 +253,24 @@ function ContactModal() {
     }
   };
 
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
   const handleEnter = async () => {
     if (currentStep < 5) {
       handleNext();
     } else {
-      // Submit form
       if (!validateStep(5)) return;
+
+      if (!turnstileToken) {
+        setErrors({ submit: "Please complete the CAPTCHA verification" });
+        return;
+      }
 
       setIsSubmitting(true);
       try {
@@ -268,6 +283,7 @@ function ContactModal() {
             name: formData.name,
             email: formData.email,
             message: `Company: ${formData.company}\n\nMessage: ${formData.message}`,
+            turnstileToken,
           }),
         });
 
@@ -550,6 +566,14 @@ function ContactModal() {
                         <p className="font-['Manrope',sans-serif] font-medium shrink-0 text-[#878787] w-full">More info</p>
                         <p className="font-['Manrope',sans-serif] font-normal shrink-0 text-white w-full break-words">{formData.message || "—"}</p>
                       </div>
+                    </div>
+                    <div className="w-full pt-2">
+                      <Turnstile
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                        onVerify={handleTurnstileVerify}
+                        onExpire={handleTurnstileExpire}
+                        theme="dark"
+                      />
                     </div>
                     {errors.submit && (
                       <p className="text-red-400 text-xs sm:text-sm mb-2">{errors.submit}</p>

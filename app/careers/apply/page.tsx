@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, FormEvent, ChangeEvent, Suspense } from "react";
+import React, { useState, useCallback, FormEvent, ChangeEvent, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Footer from "../../../components/Footer";
 import Navigation from "../../../components/Navigation";
+import Turnstile from "../../../components/Turnstile";
 
 
 
@@ -30,6 +31,15 @@ function ApplyForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -125,6 +135,11 @@ function ApplyForm() {
       return;
     }
 
+    if (!turnstileToken) {
+      setErrors((prev) => ({ ...prev, turnstile: "Please complete the CAPTCHA verification" }));
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
@@ -177,6 +192,7 @@ function ApplyForm() {
           yearOfGrad: formData.yearOfGrad === "Other" ? formData.yearOfGradOther : formData.yearOfGrad,
           backlogs: formData.backlogs,
           resumeUrl: resumeUrl || filePath,
+          turnstileToken,
         }),
       });
 
@@ -468,11 +484,22 @@ function ApplyForm() {
             <p className="mt-1 text-xs text-gray-500">PDF only, max 5MB</p>
           </div>
 
+          {/* Turnstile CAPTCHA */}
+          <div>
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+              onVerify={handleTurnstileVerify}
+              onExpire={handleTurnstileExpire}
+              theme="light"
+            />
+            {errors.turnstile && <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.turnstile}</p>}
+          </div>
+
           {/* Submit Button */}
           <div className="flex gap-4 pt-4">
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !turnstileToken}
               className="flex-1 bg-gradient-to-r from-[#66c2e2] to-[#005c89] text-white font-semibold text-sm sm:text-base py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Submitting..." : "Submit Application"}
