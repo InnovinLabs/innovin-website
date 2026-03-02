@@ -6,9 +6,11 @@ import { PreloadImage } from "./PreloadImage";
 import Image from "next/image";
 
 // Card container up to 1100×700 — resize at fetch
-const img1 = cloudinaryUrl("v1770654379/20260209_160659.jpg_cbpvzb.jpg", { w: 1100, h: 700, c: "fill" });
-const img2 = cloudinaryUrl("v1770654378/20260209_160612.jpg_gc3qk1.jpg", { w: 1100, h: 700, c: "fill" });
-const img3 = cloudinaryUrl("v1770654373/20260209_160751.jpg_ceunj0.jpg", { w: 1100, h: 700, c: "fill" });
+// Card container — using 800px width for initial load to speed up page paint. 
+// Cloudinary handles the resize.
+const img1 = cloudinaryUrl("v1770654379/20260209_160659.jpg_cbpvzb.jpg", { w: 800, h: 512, c: "fill" });
+const img2 = cloudinaryUrl("v1770654378/20260209_160612.jpg_gc3qk1.jpg", { w: 800, h: 512, c: "fill" });
+const img3 = cloudinaryUrl("v1770654373/20260209_160751.jpg_ceunj0.jpg", { w: 800, h: 512, c: "fill" });
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -393,10 +395,10 @@ export default function Services() {
                   ref={(el: HTMLImageElement | null) => { cardImagesRef.current[index] = el; }}
                   src={service.image}
                   alt={service.title}
-                  width={1100}
-                  height={700}
+                  width={800}
+                  height={512}
                   priority={index === 0}
-                  loading={index === 0 ? "eager" : undefined}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="w-full h-full object-cover"
                   style={{ willChange: 'opacity' }}
                 />
@@ -469,10 +471,10 @@ export default function Services() {
                 <div className="absolute inset-0">
                   <Image
                     src={service.image}
-                    width={1100}
-                    height={700}
+                    width={800}
+                    height={512}
                     priority={index === 0}
-                    loading={index === 0 ? "eager" : undefined}
+                    loading={index === 0 ? "eager" : "lazy"}
                     alt={service.title}
                     className="w-full h-full object-cover opacity-100"
                   />

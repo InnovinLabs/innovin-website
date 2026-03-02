@@ -20,10 +20,10 @@ if (typeof window !== "undefined") {
 const iconCheck = "/images/21d929d3882a56f4a14a488dee787d233888e288.svg";
 const life = "/images/compressed_2a10271a41c28441412779781963630458378940.webp";
 
-// Reason cards: desktop 450×347, mobile up to 300×300 — request 900×694 at fetch (2x)
-const img1 = cloudinaryUrl("v1770654380/IMG_0552_gshpuk.heic", { w: 900, h: 694, c: "fill" });
-const img2 = cloudinaryUrl("v1770654372/IMG_0484_kofvre.jpg", { w: 900, h: 694, c: "fill" });
-const img3 = cloudinaryUrl("v1770654369/IMG_4983_vmhgas.jpg", { w: 900, h: 694, c: "fill" });
+// Reason cards: optimized for caching and fast paint
+const img1 = cloudinaryUrl("v1770654380/IMG_0552_gshpuk.heic", { w: 800, h: 600, c: "fill" });
+const img2 = cloudinaryUrl("v1770654372/IMG_0484_kofvre.jpg", { w: 800, h: 600, c: "fill" });
+const img3 = cloudinaryUrl("v1770654369/IMG_4983_vmhgas.jpg", { w: 800, h: 600, c: "fill" });
 
 const careers1 = "https://res.cloudinary.com/dejb29i0k/image/upload/v1772440167/careers1_u6prsi.webp"
 const careers2 = "https://res.cloudinary.com/dejb29i0k/image/upload/v1772440166/careers2_jlp4k1.webp"
@@ -79,10 +79,11 @@ const DraggablePhoto = ({ image, index, openLightbox }: { image: GalleryImage; i
     >
       <div className="relative overflow-hidden rounded-[12px] sm:rounded-[16px] shadow-lg hover:shadow-xl transition-shadow duration-300">
         <Image
-          src={image.path.startsWith('http') ? image.path : cloudinaryUrl(image.path, { w: 800 })}
+          src={image.path.startsWith('http') ? image.path : cloudinaryUrl(image.path, { w: 600, h: 450, c: "fill" })}
           alt={image.alt}
-          width={800}
-          height={600}
+          width={600}
+          height={450}
+          loading="lazy"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
         />
         {/* Hover overlay */}
@@ -499,10 +500,10 @@ export default function CareersPage({ jobs }: CareersPageProps) {
                     <Image
                       src={cloudinaryUrl(member.img, { w: 200, h: 200, c: "fill" })}
                       alt=""
-                      width={200}
-                      height={200}
+                      width={100}
+                      height={100}
                       priority={idx === 0}
-                      loading={idx === 0 ? "eager" : undefined}
+                      loading={idx === 0 ? "eager" : "lazy"}
                       className="w-full h-full object-cover"
                       onError={(e: any) => {
                         // Fallback to placeholder

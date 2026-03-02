@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type React from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 import { testimonials } from "@/lib/testimonials";
 import type { Testimonial } from "@/lib/testimonials";
 
@@ -210,7 +211,7 @@ function TestimonialModal({
             ) : t.image ? (
               <div className="relative h-[260px] sm:h-[400px] bg-neutral-900 border-b border-neutral-200">
                 <Image
-                  src={t.image}
+                  src={t.image ? cloudinaryUrl(t.image, { w: 1200, h: 800, c: "fit" }) : ""}
                   alt={getCompanyName(t)}
                   fill
                   className="object-cover opacity-95"
@@ -304,11 +305,12 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       {/* Image area — company logo on subtle bg */}
       <div className="relative h-[180px] sm:h-auto sm:flex-1 mx-5 mt-4 rounded-xl bg-neutral-50 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover/card:scale-[1.01]">
         <Image
-          src={t.image || t.logo}
+          src={t.image ? cloudinaryUrl(t.image, { w: 600, h: 400, c: "fill" }) : t.logo}
           alt={getCompanyName(t)}
           fill={!!t.image}
           width={!t.image ? 150 : undefined}
           height={!t.image ? 100 : undefined}
+          loading="lazy"
           className={
             t.image
               ? "object-cover"
