@@ -34,7 +34,7 @@ A static marketing website built with Next.js 16, featuring static site generati
 └── public/          # Static assets
 ```
 
-## Getting Started
+## Getting started
 
 1. Install dependencies:
 ```bash
