@@ -1,5 +1,5 @@
 import { client } from './client'
-import type { QueryParams } from 'next-sanity'
+import type { QueryParams } from '@sanity/client'
 
 /**
  * Static export mode: plain sanityFetch using the published Sanity client.

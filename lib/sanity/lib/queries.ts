@@ -1,4 +1,5 @@
-import { defineQuery } from 'next-sanity'
+// defineQuery is a pass-through tag — replaced to avoid next-sanity Server Actions in static export
+const defineQuery = (q: string) => q
 
 const linkReference = /* groq */ `
   _type == "link" => {

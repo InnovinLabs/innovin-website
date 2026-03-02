@@ -1,7 +1,7 @@
-import {createClient} from 'next-sanity'
+import { createClient } from '@sanity/client'
 
-import {apiVersion, dataset, projectId, studioUrl} from '@/lib/sanity/lib/api'
-import {token} from './token'
+import { apiVersion, dataset, projectId, studioUrl } from '@/lib/sanity/lib/api'
+import { token } from './token'
 
 /**
  * Sanity client for production use.
