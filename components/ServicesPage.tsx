@@ -9,10 +9,10 @@ import Image from "next/image";
 const imgLogoDark = "/images/logo.png";
 const imgEllipse2 = "/images/blue_gradient.svg";
 // Service images: container up to 550×400 — request 1100×800 at fetch (2x)
-const imgProductDev = "https://res.cloudinary.com/dejb29i0k/image/upload/v1770996488/1p_dhnwny.png";
-const imgDesign = "https://res.cloudinary.com/dejb29i0k/image/upload/v1770996488/2p_bjbzt1.png";
-const imgConsulting = "https://res.cloudinary.com/dejb29i0k/image/upload/v1770996489/3p_tvalko.png";
-const imgAIConsulting = "https://res.cloudinary.com/dejb29i0k/image/upload/v1770996488/4p_mp3wui.png";
+const imgProductDev = cloudinaryUrl("v1770996488/1p_dhnwny.png", { w: 1100, h: 800, c: "fill" });
+const imgDesign = cloudinaryUrl("v1770996488/2p_bjbzt1.png", { w: 1100, h: 800, c: "fill" });
+const imgConsulting = cloudinaryUrl("v1770996489/3p_tvalko.png", { w: 1100, h: 800, c: "fill" });
+const imgAIConsulting = cloudinaryUrl("v1770996488/4p_mp3wui.png", { w: 1100, h: 800, c: "fill" });
 
 export default function ServicesPage() {
   const { openModal } = useContactModal();
@@ -55,6 +55,7 @@ export default function ServicesPage() {
       bullets: [
         "Tailored intelligence that crafts solutions optimized for your unique industry challenges, for maximum impact.",
         "Combine expert-driven AI tools with deep industry knowledge, ensuring solutions that seamlessly integrate with your existing operations.",
+        "Outcome-focused AI strategies designed to deliver measurable value, scalability, and long-term business advantage."
       ],
       image: imgAIConsulting,
       imageLeft: true,

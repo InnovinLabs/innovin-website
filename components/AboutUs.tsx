@@ -535,7 +535,7 @@ export default function AboutUs() {
         <div className="w-full max-w-[1681px] mx-auto relative">
           {/* Thick grey dashed lines at the sides, matching footer margin behavior */}
           <div
-            className="absolute left-0 -top-6 sm:-top-10 lg:-top-14 bottom-0 hidden md:block"
+            className="absolute left-0 -top-6 sm:-top-10 lg:-top-14 bottom-0 hidden xl:block"
             style={{
               width: "2px",
               backgroundImage: "linear-gradient(to bottom, #d1d5db 65%, transparent 65%)",
@@ -544,7 +544,7 @@ export default function AboutUs() {
             }}
           />
           <div
-            className="absolute right-0 -top-6 sm:-top-10 lg:-top-14 bottom-0 hidden md:block"
+            className="absolute right-0 -top-6 sm:-top-10 lg:-top-14 bottom-0 hidden xl:block"
             style={{
               width: "2px",
               backgroundImage: "linear-gradient(to bottom, #d1d5db 65%, transparent 65%)",

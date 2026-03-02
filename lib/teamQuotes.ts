@@ -1,9 +1,9 @@
-const jibinLogo = "/images/jibin.jpg";
-const sreyasLogo = "/images/sreyas.webp";
-const ashwathyLogo = "/images/ashwathy.png";
-const aswinLogo = "/images/aswin.webp";
-const sidharthLogo = "/images/sidharth.webp";
-const edwinLogo = "/images/edwin.webp";
+const jibinLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772440850/jibin_aamcg3.webp";
+const sreyasLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772439760/sreyas_wuzbcm.webp";
+const ashwathyLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772439757/ashwathy_rdj5xr.png";
+const aswinLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772439757/aswin_giot1x.webp";
+const sidharthLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772439758/sidharth_zhe9co.webp";
+const edwinLogo = "https://res.cloudinary.com/dejb29i0k/image/upload/f_auto,q_auto/v1772439757/edwin_xzmsfz.webp";
 
 export const teamQuotes = [
     {
