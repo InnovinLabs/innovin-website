@@ -52,6 +52,7 @@ export async function onRequestPost(context) {
                     'Content-Type': 'application/json',
                     'apikey': supabaseKey,
                 },
+                body: '{}',
             }
         );
 
