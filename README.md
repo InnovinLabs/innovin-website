@@ -2,7 +2,7 @@
 
 A static marketing website built with Next.js 16, featuring static site generation (SSG) and on-demand revalidation.
 
-## Technology Stack
+## Technology stack
 
 - **Next.js 16** - React framework with static export
 - **TypeScript** - Type safety
