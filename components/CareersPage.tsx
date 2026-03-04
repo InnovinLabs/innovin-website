@@ -643,7 +643,7 @@ export default function CareersPage({ jobs }: CareersPageProps) {
         </div>
 
         {/* Talent Approach Section — content-sized on mobile/tablet, fixed height on xl desktop */}
-        <div className="relative min-h-0 md:min-h-0 xl:min-h-[1314px] xl:h-[1314px] pb-10 sm:pb-12 lg:pb-16">
+        <div className="relative min-h-0 md:min-h-0 xl:min-h-[1214px] xl:h-[1214px] pb-10 sm:pb-12 lg:pb-16">
           {/* Star decorations */}
           <div ref={starLeftRef} className="hidden xl:block absolute left-1/2 -ml-[580px] top-[300px] w-[100px] h-[100px] opacity-30">
             <svg viewBox="0 0 100 100" fill="none">
@@ -665,7 +665,7 @@ export default function CareersPage({ jobs }: CareersPageProps) {
             </p>
           </div>
 
-          <div className="relative mt-6 sm:mt-8 md:mt-10 xl:mt-0 xl:absolute xl:left-1/2 xl:top-[334px] xl:-translate-x-1/2 w-full xl:w-[890px] mx-auto">
+          <div className="relative mt-6 sm:mt-8 md:mt-10 xl:mt-0 xl:absolute xl:left-1/2 xl:top-[234px] xl:-translate-x-1/2 w-full xl:w-[890px] mx-auto">
             {/* Back card */}
             <div ref={backCardRef} className="hidden xl:block absolute top-0 left-0 right-0 flex items-center justify-center z-10">
               <div className="bg-white rounded-[20px] shadow-[0px_0px_9px_0px_rgba(0,0,0,0.25)] w-[834px] h-[834px]" style={{ transform: 'rotate(4deg)' }}>
