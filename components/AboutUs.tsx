@@ -211,51 +211,54 @@ function JourneyCard() {
       ref={cardRef}
       className={`transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
     >
-      <div className="relative max-w-3xl mx-auto bg-white border border-neutral-100 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden">
-        {/* Date / Origin line */}
-        <div className="px-6 sm:px-10 pt-8 sm:pt-10 flex justify-end">
+      <div className="relative max-w-3xl mx-auto">
+        {/* Letter card */}
+        <div className="relative bg-white border border-neutral-100 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+          {/* Date / Origin line */}
+          <div className="px-6 sm:px-10 pt-8 sm:pt-10 flex justify-end">
 
-        </div>
+          </div>
 
-        {/* Title */}
-        <div className="px-6 sm:px-10 pt-2 pb-0">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#005c89] font-bold leading-tight tracking-[-1.2px]">
-            Our journey
-          </h2>
-        </div>
+          {/* Title */}
+          <div className="px-6 sm:px-10 pt-2 pb-0">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#005c89] font-bold leading-tight tracking-[-1.2px]">
+              Our journey
+            </h2>
+          </div>
 
-        {/* Letter body */}
-        <div className="px-6 sm:px-10 pt-6 pb-12 sm:pb-16 flex flex-col gap-6">
-          {journeyContent.split("\n\n").map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-base sm:text-lg lg:text-xl text-[#232323] leading-[1.6] sm:leading-[1.7] text-left hyphens-auto"
-            >
-              {paragraph}
-            </p>
-          ))}
+          {/* Letter body */}
+          <div className="px-6 sm:px-10 pt-6 pb-16 sm:pb-20 flex flex-col gap-6">
+            {journeyContent.split("\n\n").map((paragraph, i) => (
+              <p
+                key={i}
+                className="text-base sm:text-lg lg:text-xl text-[#232323] leading-[1.6] sm:leading-[1.7] text-left hyphens-auto"
+              >
+                {paragraph}
+              </p>
+            ))}
 
-          <div className="mt-4 sm:mt-6 text-sm sm:text-base text-[#5a5a5a] leading-relaxed">
-            <p className="italic mb-2">With shared purpose,</p>
-            <p className="font-bold text-[#232323] text-lg sm:text-xl">The Innovin Labs Team</p>
-            <div className="mt-2 w-32 h-16 relative rotate-[-3deg]">
-              <Image
-                src="/images/signature.png"
-                alt="Signature"
-                fill
-                className="object-contain object-left"
-              />
+            <div className="mt-4 sm:mt-6 text-sm sm:text-base text-[#5a5a5a] leading-relaxed">
+              <p className="italic mb-2">With shared purpose,</p>
+              <p className="font-bold text-[#232323] text-lg sm:text-xl">The Innovin Labs Team</p>
+              <div className="mt-2 w-32 h-16 relative rotate-[-3deg]">
+                <Image
+                  src="/images/signature.png"
+                  alt="Signature"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Wax/Ink Stamp */}
-        <div className="absolute -bottom-6 -right-6 sm:bottom-2 sm:right-2 w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] rotate-[-15deg] pointer-events-none select-none">
+        {/* Stamp overlay — hidden on mobile, visible sm+ */}
+        <div className="hidden sm:block absolute -bottom-12 -right-6 md:-bottom-14 md:-right-8 sm:w-[200px] sm:h-[200px] md:w-[240px] md:h-[240px] rotate-[-15deg] pointer-events-none select-none scale-[1.3] z-10">
           <Image
             src="/images/stamp.webp"
             alt="Official Stamp"
             fill
-            className="object-contain opacity-90"
+            className="object-contain drop-shadow-lg"
             draggable={false}
           />
         </div>
@@ -329,7 +332,7 @@ function TimelineSection() {
   return (
     <div ref={sectionRef} className="relative max-w-3xl mx-auto py-16 sm:py-20 lg:py-24">
       {/* Center vertical line — runs behind the cards (z-0) */}
-      <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[2px] z-0">
+      <div className="absolute left-1/2 top-0 bottom-[15%] -translate-x-1/2 w-[2px] z-0">
         <div
           ref={lineRef}
           className="w-full h-full bg-[#005c89]/20"
@@ -546,12 +549,12 @@ export default function AboutUs() {
 
           <div className="max-w-5xl mx-auto">
             {/* ═══════ OUR JOURNEY — letter card ═══════ */}
-            <section className="bg-white py-12 sm:py-16 lg:py-20 px-4">
+            <section className="bg-white py-12 sm:py-16 lg:py-20">
               <JourneyCard />
             </section>
 
             {/* ═══════ MISSION & VISION — timeline ═══════ */}
-            <section className="bg-white px-4 pb-12 sm:pb-16 lg:pb-20">
+            <section className="bg-white pb-12 sm:pb-16 lg:pb-20">
               {/* Desktop: center-line timeline with left/right cards */}
               <div className="hidden md:block">
                 <TimelineSection />

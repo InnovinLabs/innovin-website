@@ -5,6 +5,7 @@ import { AnimatedButton } from "./AnimatedButton";
 import { cloudinaryUrl } from "@/lib/cloudinary";
 import { PreloadImage } from "./PreloadImage";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const imgLogoDark = "/images/logo.png";
 const imgEllipse2 = "/images/blue_gradient.svg";
@@ -73,23 +74,42 @@ export default function ServicesPage() {
             <div className="flex items-start pl-0 pr-4 sm:pr-5 lg:pr-[20px] relative w-full">
               <div className="flex flex-col items-center justify-center relative w-full">
                 {/* Blur Banner Effect */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-[#66c2e2]/15 blur-[60px] rounded-full -z-10 pointer-events-none mix-blend-multiply" />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-[#66c2e2]/15 blur-[60px] rounded-full -z-10 pointer-events-none mix-blend-multiply"
+                />
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl text-[#232323] font-semibold leading-tight tracking-tight mb-4 sm:mb-5 lg:mb-6 w-full text-center">
+                <motion.h1
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl text-[#232323] font-semibold leading-tight tracking-tight mb-4 sm:mb-5 lg:mb-6 w-full text-center"
+                >
                   Our services
-                </h1>
+                </motion.h1>
               </div>
             </div>
-            <p className="text-base sm:text-lg lg:text-xl text-[#5a5a5a] leading-relaxed max-w-[600px] mx-auto w-full text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base sm:text-lg lg:text-xl text-[#5a5a5a] leading-relaxed max-w-[600px] mx-auto w-full text-center"
+            >
               We infuse AI into all aspects of technology and development, delivering smarter outcomes and smoother experiences.
-            </p>
+            </motion.p>
           </div>
 
           {/* Services List */}
           <div className="flex flex-col gap-12 sm:gap-16 md:gap-20 xl:gap-24 items-start relative w-full">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
                 className={`flex flex-col xl:flex-row gap-8 sm:gap-10 xl:gap-16 items-center xl:items-start relative w-full ${service.imageLeft ? "xl:flex-row-reverse" : ""
                   }`}
               >
@@ -126,7 +146,7 @@ export default function ServicesPage() {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

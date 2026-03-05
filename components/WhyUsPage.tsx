@@ -43,11 +43,11 @@ export default function WhyUsPage() {
   return (
     <main id="main-content">
       <PreloadImage href={HERO_IMAGE_1} />
-      <div className="bg-white w-full pt-[100px] sm:pt-[120px] lg:pt-[146px] overflow-clip relative px-4 sm:px-6 md:px-8 xl:px-[70px]">
+      <div className="bg-white w-full pt-[100px] sm:pt-[120px] lg:pt-[146px] overflow-clip relative">
         <div className="max-w-[1681px] mx-auto">
           {/* Header Section */}
           {/* Hero Section */}
-          <div className="relative w-full min-h-[calc(100vh-100px)] sm:min-h-[calc(100vh-120px)] lg:min-h-[calc(100vh-146px)] flex items-center justify-center mb-16 lg:mb-24 overflow-visible">
+          <div className="relative w-full min-h-[calc(100vh-100px)] sm:min-h-[calc(100vh-120px)] lg:min-h-[calc(100vh-146px)] flex items-center justify-center overflow-visible">
             {/* Background Gradient & Animated Blur */}
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-[#E0F2FE]/40 pointer-events-none" />
             <motion.div

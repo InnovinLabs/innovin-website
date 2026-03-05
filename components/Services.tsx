@@ -377,7 +377,7 @@ export default function Services() {
         </div>
 
         {/* Cards */}
-        <div className="absolute left-[62%] xxl:left-[60%] top-1/2 -translate-x-1/2 w-[900px] xxl:w-[1100px] h-[620px] xxl:h-[700px]">
+        <div className="absolute left-[60%] top-1/2 -translate-x-1/2 w-[900px] h-[580px] max-h-[75vh]">
           {services.map((service, index) => (
             <a
               key={index}
@@ -408,7 +408,7 @@ export default function Services() {
                   style={{ willChange: 'opacity' }}
                 />
               </div>
-              <div className="relative h-full flex flex-col justify-end p-12">
+              <div className="relative h-full flex flex-col justify-end p-8 xxl:p-12">
                 {/* Bottom Fade Gradient for Text Readability */}
                 <div
                   className="absolute bottom-0 left-0 right-0 h-1/2 z-0 pointer-events-none"
@@ -417,8 +417,8 @@ export default function Services() {
                   }}
                 />
 
-                <h3 className="relative z-10 text-4xl text-white font-semibold mb-6 leading-tight">{service.title}</h3>
-                <p className="relative z-10 text-xl text-neutral-300 leading-relaxed max-w-[600px]">{service.description}</p>
+                <h3 className="relative z-10 text-3xl xxl:text-4xl text-white font-semibold mb-4 leading-tight">{service.title}</h3>
+                <p className="relative z-10 text-lg xxl:text-xl text-neutral-300 leading-relaxed max-w-[600px]">{service.description}</p>
               </div>
             </a>
           ))}
