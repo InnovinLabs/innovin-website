@@ -149,11 +149,12 @@ function ApplyForm() {
     setSubmitStatus("idle");
 
     try {
-      // Upload file directly to Cloudflare Function (which uploads to Supabase server-side)
+      // Upload file to API Worker (which uploads to Supabase server-side)
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const uploadFormData = new FormData();
       uploadFormData.append("file", formData.resume!);
 
-      const uploadResponse = await fetch("/api/upload-resume", {
+      const uploadResponse = await fetch(`${apiUrl}/api/upload-resume`, {
         method: "POST",
         body: uploadFormData,
       });
@@ -182,7 +183,7 @@ function ApplyForm() {
       setLoadingStep("submitting");
 
       // Submit application data
-      const applicationResponse = await fetch("/api/applications", {
+      const applicationResponse = await fetch(`${apiUrl}/api/applications`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
