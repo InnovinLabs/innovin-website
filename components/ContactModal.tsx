@@ -426,7 +426,6 @@ function ContactModal() {
               {!showSuccess && currentStep === 3 && <p className="font-['Manrope',sans-serif] font-medium leading-[1.2] sm:leading-[60px] shrink-0 text-white text-[14px] sm:text-[16px] whitespace-normal">What's your email</p>}
               {!showSuccess && currentStep === 4 && <p className="font-['Manrope',sans-serif] font-medium leading-[1.2] sm:leading-[60px] shrink-0 text-white text-[14px] sm:text-[16px] whitespace-normal">What can we help you with</p>}
               {!showSuccess && currentStep === 5 && <p className="font-['Manrope',sans-serif] font-medium leading-[1.2] sm:leading-[60px] shrink-0 text-white text-[14px] sm:text-[16px]">Confirm messsage</p>}
-              {showSuccess && <p className="font-['Manrope',sans-serif] font-medium leading-[1.2] sm:leading-[60px] shrink-0 text-[#66c2e2] text-[14px] sm:text-[16px]">Thank you!</p>}
             </div>
 
             {
